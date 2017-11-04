@@ -28,7 +28,8 @@ userSchema.methods.comparePassword = function(password) {
 };
 
 userSchema.methods.generateToken = function() {
-  return jwt.sign({id: this._id}, process.env.SECRET || 'changethis');
+  let secret = process.env.SECRET || 'changethis';
+  return jwt.sign({id: this._id}, secret);
 };
 
 module.exports = mongoose.model('User', userSchema);

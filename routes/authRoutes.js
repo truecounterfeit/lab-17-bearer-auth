@@ -3,7 +3,7 @@
 const User = require(__dirname + '/../models/user');
 const basicHTTP = require(__dirname + '/../lib/basic-http');
 const jsonParser = require('body-parser').json();
-
+const bearerAuth = require(__dirname + '/../lib/bearerAuth');
 const authRouter = module.exports = require('express').Router();
 
 authRouter.post('/signup', jsonParser, (req, res, next) => {
@@ -27,4 +27,10 @@ authRouter.get('/signin', basicHTTP, (req, res, next) => {
     .catch(err => next({statusCode: 403, message: 'authoriztion forbidden'}));
   })
   .catch(next);
-});s
+});
+
+authRouter.get('/moneyFromThisPerson', bearerAuth, (req, res, next)) => {
+  console.log(req.userID);
+  res.send(200, "ID" + req.userID);
+  return User.findTheMoney(req.userID);
+}
