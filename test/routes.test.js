@@ -5,8 +5,9 @@ const expect = require('expect');
 const authRoutes = require('..routes/authRoutes.js');
 const app = require('../server.js')
 const server = app.listen(3000);
-
+const request = require('superagent');
 require("dotenv").config();
+const
 
 describe('Testing for routes', () => {
 it('403: Forbidden; routes that have not been registered', (done) => {
